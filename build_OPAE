@@ -1,0 +1,40 @@
+# Change directory to the opae directory
+$ cd /tmp/opae/
+
+# Check contents
+$ ls
+ase cmake common doc libopae platforms safe_string samples scripts tools AUTHORS CMakeLists.txt COPYING
+README RELEASE_NOTES
+
+# Create an out-of-build directory, and change to it
+$ mkdir mybuild
+$ cd mybuild
+
+# Configure the software build using cmake (see options)
+# $ cmake <Path to CMakeLists.txt>
+# Install directory, in this example it is <Path  to opae>/myinst/
+
+$ cmake ../ -DBUILD_ASE=YES -DCMAKE_INSTALL_PREFIX=/tmp/opae/myinst/
+-- The C compiler identification is GNU 4.8.4
+-- The CXX compiler identification is GNU 4.8.4
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+.
+.
+.
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/opae/mybuild
+
+# Build and install libraries
+$ make
+$ make install
+
+# The environment Variable PATH should point to /myinst/bin
+# Check library install paths
+$ cd /tmp/opae/myinst/
+$ ls
+doc  include  lib
+
+$ ls lib
+libopae-c-ase.so  libopae-c.so  libopae-c.so.0  libopae-c.so.0.1.0 ...
